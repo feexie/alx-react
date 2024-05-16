@@ -1,43 +1,43 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { getLatestNotification } from '../utils/utils';
 import Notifications from './Notifications';
+import NotificationItem from './NotificationItem';
 
-describe('<Notification />', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<Notifications />);
-    shallow(<Notifications />);
-  });
+describe('Notification tests', () => {
+	it('renders Notification component without crashing', () => {
+		const component = shallow(<Notifications />);
 
-  it('Notification Item with html', () => {
-    const wrapper = shallow(<Notifications displayDrawer />);
-    const nItem = wrapper.find('NotificationItem');
-    expect(nItem).toBeDefined();
-    expect(nItem.first().html()).toEqual(
-      '<li data-notification-type="default">New course available</li>'
-    );
-  });
+		expect(component).toBeDefined();
+	});
 
-  it('menuItem with displayDrawer false', () => {
-    const wrapper = shallow(<Notifications />);
-    const mItem = wrapper.find('div.menuItem');
-    expect(mItem).toHaveLength(1);
-  });
+	it('renders correct list items', () => {
+		const wrapper = shallow(<Notifications />);
+		expect(wrapper.find('ul').children()).toHaveLength(3);
+		expect(wrapper.find('ul').childAt(0).html()).toEqual(
+			'<li data="default">New course available</li>'
+		);
+		expect(wrapper.find('ul').childAt(1).html()).toEqual(
+			'<li data="urgent">New resume available</li>'
+		);
+		expect(wrapper.find('ul').childAt(2).html()).toEqual(
+			`<li data=\"urgent\">${getLatestNotification()}</li>`
+		);
+	});
 
-  it('Notification with displayDrawer false', () => {
-    const wrapper = shallow(<Notifications />);
-    const dNoti = wrapper.find('div.Notifications');
-    expect(dNoti).toHaveLength(0);
-  });
+	it('renders an unordered list', () => {
+		const wrapper = shallow(<Notifications />);
+		expect(wrapper.find('ul').children()).toHaveLength(3);
+		wrapper.find('ul').forEach((node) => {
+			expect(node.equals(<NotificationItem />));
+		});
+	});
 
-  it('menuItem with displayDrawer true', () => {
-    const wrapper = shallow(<Notifications displayDrawer />);
-    const mItem = wrapper.find('div.menuItem');
-    expect(mItem).toHaveLength(1);
-  });
+	it('renders correct text', () => {
+		const component = shallow(<Notifications />);
 
-  it('displayDrawer is true', () => {
-    const wrapper = shallow(<Notifications displayDrawer />);
-    const dNoti = wrapper.find('div.Notifications');
-    expect(dNoti).toHaveLength(1);
-  });
+		expect(component.find('p').prop('children')).toBe(
+			'Here is the list of notifications'
+		);
+	});
 });
