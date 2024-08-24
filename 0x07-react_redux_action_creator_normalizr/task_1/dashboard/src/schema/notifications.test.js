@@ -1,30 +1,31 @@
-import { getAllNotificationsByUser, normalized } from './notifications';
+import { fetchUserNotifications, normalizedData } from './notifications';
 
-describe('notifications', () => {
-  it('read data from a json', () => {
-    const data = [
-        {
-          guid: '2d8e40be-1c78-4de0-afc9-fcc147afd4d2',
-          isRead: true,
-          type: 'urgent',
-          value:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
-        },
-        {
-          guid: '280913fe-38dd-4abd-8ab6-acdb4105f922',
-          isRead: false,
-          type: 'urgent',
-          value:
-            'Non diam phasellus vestibulum lorem sed risus ultricies. Tellus mauris a diam maecenas sed',
-        },
-      ],
-      allContext = getAllNotificationsByUser('5debd764a7c57c7839d722e9');
+describe('Notifications Schema Tests', () => {
+  it('should retrieve notifications for a given user ID', () => {
+    const expectedData = [
+      {
+        guid: '2d8e40be-1c78-4de0-afc9-fcc147afd4d2',
+        isRead: true,
+        type: 'urgent',
+        value:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+      },
+      {
+        guid: '280913fe-38dd-4abd-8ab6-acdb4105f922',
+        isRead: false,
+        type: 'urgent',
+        value:
+          'Non diam phasellus vestibulum lorem sed risus ultricies. Tellus mauris a diam maecenas sed',
+      },
+    ];
 
-    expect(allContext).toEqual(expect.arrayContaining(data));
+    const userNotifications = fetchUserNotifications('5debd764a7c57c7839d722e9');
+
+    expect(userNotifications).toEqual(expect.arrayContaining(expectedData));
   });
 
-  it('normalized - result', () => {
-    const data = [
+  it('should verify normalized result IDs', () => {
+    const expectedIds = [
       '5debd76480edafc8af244228',
       '5debd764507712e7a1307303',
       '5debd76444dd4dafea89d53b',
@@ -41,13 +42,13 @@ describe('notifications', () => {
       '5debd764de9fa684468cdc0b',
     ];
 
-    const result = normalized.result;
+    const resultIds = normalizedData.result;
 
-    expect(result).toEqual(expect.arrayContaining(data));
+    expect(resultIds).toEqual(expect.arrayContaining(expectedIds));
   });
 
-  it('normalized - users', () => {
-    const data = {
+  it('should validate normalized user entity', () => {
+    const expectedUser = {
       age: 25,
       email: 'poole.sanders@holberton.nz',
       id: '5debd764a7c57c7839d722e9',
@@ -55,35 +56,35 @@ describe('notifications', () => {
       picture: 'http://placehold.it/32x32',
     };
 
-    const user = normalized.entities.users['5debd764a7c57c7839d722e9'];
+    const userEntity = normalizedData.entities.users['5debd764a7c57c7839d722e9'];
 
-    expect(user).toEqual(data);
+    expect(userEntity).toEqual(expectedUser);
   });
 
-  it('normalized - messages', () => {
-    const data = {
+  it('should validate normalized message entity', () => {
+    const expectedMessage = {
       guid: 'efb6c485-00f7-4fdf-97cc-5e12d14d6c41',
       isRead: false,
       type: 'default',
       value: 'Cursus risus at ultrices mi.',
     };
 
-    const message =
-      normalized.entities.messages['efb6c485-00f7-4fdf-97cc-5e12d14d6c41'];
+    const messageEntity =
+      normalizedData.entities.messages['efb6c485-00f7-4fdf-97cc-5e12d14d6c41'];
 
-    expect(message).toEqual(data);
+    expect(messageEntity).toEqual(expectedMessage);
   });
 
-  it('normalized - notifications', () => {
-    const data = {
+  it('should validate normalized notification entity', () => {
+    const expectedNotification = {
       author: '5debd764f8452ef92346c772',
       context: '3068c575-d619-40af-bf12-dece1ee18dd3',
       id: '5debd7642e815cd350407777',
     };
 
-    const notification =
-      normalized.entities.notifications['5debd7642e815cd350407777'];
+    const notificationEntity =
+      normalizedData.entities.notifications['5debd7642e815cd350407777'];
 
-    expect(notification).toEqual(data);
+    expect(notificationEntity).toEqual(expectedNotification);
   });
 });
