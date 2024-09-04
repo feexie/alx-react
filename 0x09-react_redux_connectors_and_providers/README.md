@@ -1,44 +1,43 @@
 ## React Redux Connectors and Providers
+
 ### Learning Objectives
 
-- Redux connectors and how to use them
-- The different functions you can pass to a connector (mapStateToProps, mapDispatchToPros)
-- How to map an action creator to a component using a connector
-- How to map an async action creator to a component with Redux Thunk
-- What Redux Providers are and how to set up your app’s store
-- How you can improve a connector’s performance using Reselect
-- How to use Redux’s dev tools to debug the state of your application
+- Understand Redux connectors and their usage.
+- Learn the functions available to pass into a connector (`mapStateToProps`, `mapDispatchToProps`).
+- Map an action creator to a component using a connector.
+- Integrate an async action creator into a component with Redux Thunk.
+- Comprehend the role of Redux Providers and how to configure your app’s store.
+- Enhance connector performance with Reselect.
+- Utilize Redux DevTools to debug your application's state.
 
-Task list
+### Task List
 
-1. Create a small store
-2. Test MapStateToProps
-3. Update mapStateToProps
-4. Connect your actions creators
-mandatory
-5. Refactor your code
-6. Update your tests
-7. Async actions & Thunk middleware
-8. Connect LoginRequest to the App
-mandatory
-9. Connect user state to the Footer
-10. Connect Logout action creator to the Header
-11. Modify the uiReducer
-12. Modify the test suites
-13. Understand how to use the Redux Chrome extension
-14. Combine store: Root reducer
-15. Combine store: modify the application
-16. Combine store: write the tests
-17. Connect notifications: New Action Creator
-18. Connect notifications: Improve reducer
-19. Connect notifications to the reducer
-20. Connect notifications: clean up
-21. Connect notifications: update the test suites
-22. Selectors
-23. Connect courses: create a course selector
-24. Connect courses: create a fetch courses function
-25. Connect the courses component
-26. Memoized selectors: Redux Reselect
-27. Memoized selectors: update the UI
-28. Memoized selectors: update the test suite
-29. Container/Component
+1. **Create a small store**: Initialize a basic Redux store.
+2. **Test MapStateToProps**: Verify the mapping of state to props.
+3. **Update mapStateToProps**: Refine state mapping logic.
+4. **Connect your action creators**: Integrate action creators into components.
+5. **Refactor your code**: Optimize and clean up your existing code.
+6. **Update your tests**: Ensure all test cases align with code updates.
+7. **Async actions & Thunk middleware**: Implement async actions with Thunk.
+8. **Connect LoginRequest to the App**: Integrate login functionality.
+9. **Connect user state to the Footer**: Display user state in the footer component.
+10. **Connect Logout action creator to the Header**: Add logout functionality to the header.
+11. **Modify the uiReducer**: Update the UI reducer for enhanced functionality.
+12. **Modify the test suites**: Revise test cases to reflect reducer changes.
+13. **Understand how to use the Redux Chrome extension**: Explore Redux DevTools for debugging.
+14. **Combine store: Root reducer**: Merge multiple reducers into a root reducer.
+15. **Combine store: Modify the application**: Adjust the app to utilize the combined store.
+16. **Combine store: Write the tests**: Create test cases for the combined store.
+17. **Connect notifications: New Action Creator**: Develop an action creator for notifications.
+18. **Connect notifications: Improve reducer**: Enhance the notification reducer.
+19. **Connect notifications to the reducer**: Link the notification logic to the reducer.
+20. **Connect notifications: Clean up**: Refactor and tidy up notification-related code.
+21. **Connect notifications: Update the test suites**: Ensure test cases cover notification logic.
+22. **Selectors**: Implement selectors to retrieve specific slices of state.
+23. **Connect courses: Create a course selector**: Develop a selector for course data.
+24. **Connect courses: Create a fetch courses function**: Implement a function to fetch course data.
+25. **Connect the courses component**: Link the courses component to the Redux store.
+26. **Memoized selectors: Redux Reselect**: Introduce memoization for selectors using Reselect.
+27. **Memoized selectors: Update the UI**: Adjust the UI to reflect memoized state selections.
+28. **Memoized selectors: Update the test suite**: Modify tests to cover memoized selectors.
+29. **Container/Component**: Differentiate between container and presentational components.
